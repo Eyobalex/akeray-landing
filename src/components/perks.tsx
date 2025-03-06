@@ -23,7 +23,7 @@ const Perks = () => {
 
                 <AnimationContainer animation="fadeUp" delay={0.4}>
                     <p className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Seamlessly integrated tools for effortless property management.
+                        Seamlessly integrated tools for effortless lease management.
                     </p>
                 </AnimationContainer>
             </div>

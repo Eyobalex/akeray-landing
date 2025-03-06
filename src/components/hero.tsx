@@ -29,13 +29,13 @@ const Hero = () => {
 
                         <AnimationContainer animation="fadeUp" delay={0.4}>
                             <h1 className="text-5xl lg:text-6xl font-medium !leading-tight text-transparent bg-clip-text bg-gradient-to-r from-foreground to-neutral-500">
-                                Effortless Real Estate Trading
+                                Effortless Lease and Property Management
                             </h1>
                         </AnimationContainer>
 
                         <AnimationContainer animation="fadeUp" delay={0.6}>
                             <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
-                                Simplify your property journey with our comprehensive platform. Buy, sell, or manage properties with ease using our innovative tools and expert guidance.
+                                Simplify your property's lease management with our comprehensive platform. Manage your property's rent, receive real time sms notifications for you and your tenants or manage properties with ease using our innovative tools.
                             </p>
                         </AnimationContainer>
                     </div>

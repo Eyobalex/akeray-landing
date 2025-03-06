@@ -16,9 +16,9 @@ const Testimonials = () => {
 
                 <AnimationContainer animation="fadeUp" delay={0.3}>
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-medium !leading-tight text-transparent bg-clip-text bg-gradient-to-b from-foreground to-neutral-400">
-                        Loved by real estate
+                        Loved by property managers
                         <br />
-                        professionals
+                        And Owners
                     </h2>
                 </AnimationContainer>
 

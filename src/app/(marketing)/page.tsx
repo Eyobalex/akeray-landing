@@ -19,13 +19,13 @@ const HomePage = () => {
                 <Perks />
             </section>
 
-            <section className="w-full">
+            {/* <section className="w-full">
                 <HowItWorks />
-            </section>
+            </section> */}
 
-            <section className="w-full">
+            {/* <section className="w-full">
                 <Features />
-            </section>
+            </section> */}
 
             <section className="w-full">
                 <Testimonials />
@@ -35,9 +35,9 @@ const HomePage = () => {
                 <Pricing />
             </section>
 
-            <section className="w-full">
+            {/* <section className="w-full">
                 <PlatformMetrics />
-            </section>
+            </section> */}
 
             <section className="w-full">
                 <FAQ />
