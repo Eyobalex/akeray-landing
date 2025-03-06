@@ -21,10 +21,10 @@ export default function RootLayout({
           heading.variable
         )}
       >
-        {/* <ClerkProvider> */}
+        <ClerkProvider>
         <Toaster richColors theme="dark" position="bottom-center" />
         {children}
-        {/* </ClerkProvider> */}
+        </ClerkProvider>
       </body>
     </html>
   );
