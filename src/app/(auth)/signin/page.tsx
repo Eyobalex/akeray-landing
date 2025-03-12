@@ -4,7 +4,8 @@ import Icons from "@/components/global/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useSignIn } from "@clerk/nextjs";
+import { useGenericContext } from "@/hooks/useGenericContext";
+import AuthContext from "@/providers/AuthContext";
 import { LoaderIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,72 +15,34 @@ import { toast } from "sonner";
 const SignInPage = () => {
   const router = useRouter();
 
-  const { isLoaded, signIn, setActive } = useSignIn();
-
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { login } = useGenericContext(AuthContext);
 
+  console.log("🚀 ~ handleSubmit ~ login:", login);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // if (!isLoaded) return;
-
-    // if (!phoneNumber || !password) {
-    //     return toast.warning("Please fill in all fields");
-    // }
-
-    // setIsLoading(true);
 
     try {
-      //     const signInAttempt = await signIn.create({
-      //         identifier: phoneNumber,
-      //         password,
-      //         redirectUrl: "/dashboard"
-      //     });
-
-      //     if (signInAttempt.status === 'complete') {
-      //         await setActive({ session: signInAttempt.createdSessionId });
-      //         router.push('/dashboard');
-      //     } else {
-      //         console.error(JSON.stringify(signInAttempt, null, 2));
-      //         toast.error("Invalid email or password");
-      //     }
-
       setIsLoading(true);
-      const res = await fetch(
-        "https://akeray-api.onrender.com/api/auth/login",
-        // "http://192.168.1.15:8011/api/auth/login",
-        {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            phoneNumber: phoneNumber,
-            password: password,
-            type: "tenant",
-          }),
-        }
-      );
+      await login({ phoneNumber, password, type: "tenant" });
 
-      const fRes = await res.json();
-      console.log("🚀 ~ handleSubmit ~ fRes:", fRes);
-    } catch (err: any) {
-      console.error(JSON.stringify(err, null, 2));
-      switch (err.errors[0]?.code) {
-        case "form_identifier_not_found":
-          toast.error("This email is not registered. Please sign up first.");
-          break;
-        case "form_password_incorrect":
-          toast.error("Incorrect password. Please try again.");
-          break;
-        case "too_many_attempts":
-          toast.error("Too many attempts. Please try again later.");
-          break;
-        default:
-          toast.error("An error occurred. Please try again");
-          break;
-      }
+      // if (res) {
+      // const profile = await getUserInfo({
+      //   phoneNumber,
+      //   password,
+      //   type: "tenant",
+      // });
+      // console.log("🚀 ~ handleSubmit ~ profile:", profile);
+      toast.success("You have logged in successfully");
+      router.push("/dashboard");
+      // } else {
+      //   toast.error("Invalid Phone Number/ Password ");
+      // }
+    } catch (err) {
+      console.error("***", JSON.stringify(err, null, 2));
+      toast.error("Unable to log you in. Please try again!");
     } finally {
       setIsLoading(false);
     }

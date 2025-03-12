@@ -1,10 +1,9 @@
 import { Toaster } from "@/components/ui/sonner";
 import { base, heading } from "@/constants/fonts";
 import { cn } from "@/lib";
+import { AuthContextProvider } from "@/providers/AuthContext";
 import "@/styles/globals.css";
 import { generateMetadata } from "@/utils";
-import { ClerkProvider } from "@clerk/nextjs";
-
 export const metadata = generateMetadata();
 
 export default function RootLayout({
@@ -15,16 +14,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={cn(
-          "min-h-screen bg-[#101010] text-foreground font-base antialiased overflow-x-hidden dark",
-          base.variable,
-          heading.variable
-        )}
+      className={cn(
+        "min-h-screen bg-[#101010] text-foreground font-base antialiased overflow-x-hidden dark",
+        base.variable,
+        heading.variable
+      )}
       >
-        <ClerkProvider>
-        <Toaster richColors theme="dark" position="bottom-center" />
-        {children}
-        </ClerkProvider>
+        <AuthContextProvider>
+          <Toaster richColors theme="dark" position="bottom-center" />
+
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   );

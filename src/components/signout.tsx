@@ -1,13 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useClerk } from "@clerk/nextjs";
-
+import AuthContext from "@/providers/AuthContext";
+import { useContext } from "react";
 const SignOut = () => {
 
-    const { signOut } = useClerk();
+    const { logOut } = useContext(AuthContext);
 
-    return <Button onClick={() => signOut()}>
+    return <Button onClick={() => logOut()}>
         Sign Out
     </Button>;
 };

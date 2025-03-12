@@ -6,14 +6,14 @@ import { useGenericContext } from "@/hooks/useGenericContext";
 import AuthContext from "@/providers/AuthContext";
 import Link from "next/link";
 
-const DashboardPage = () => {
-  const { user, authenticated } = useGenericContext(AuthContext);
-  console.log("🚀 ~ DashboardPage ~ user:", user, authenticated);
+const RequestsPage = () => {
+  const { user } = useGenericContext(AuthContext);
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen z-[1000000000000000000]">
+    <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex flex-col items-center justify-center gap-6">
         <h1 className="text-lg font-medium text-center">
-          Welcome to the dashboard, {user?.name}
+          Welcome to the requests page, {user?.name}
         </h1>
         <div className="flex items-center justify-center gap-4">
           <Link href="/">
@@ -26,4 +26,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default RequestsPage;
