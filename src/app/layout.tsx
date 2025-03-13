@@ -1,11 +1,15 @@
+"use client";
+
 import { Toaster } from "@/components/ui/sonner";
 import { base, heading } from "@/constants/fonts";
 import { cn } from "@/lib";
 import { ApiProvider } from "@/providers/api.provider";
 import { AuthContextProvider } from "@/providers/AuthContext";
+import { store } from "@/services/store/app.store";
 import "@/styles/globals.css";
-import { generateMetadata } from "@/utils";
-export const metadata = generateMetadata();
+// import { generateMetadata } from "@/utils";
+import { Provider } from "react-redux";
+// export const metadata = generateMetadata();
 
 export default function RootLayout({
   children,
@@ -22,10 +26,12 @@ export default function RootLayout({
         )}
       >
         <AuthContextProvider>
-          <ApiProvider>
+          {/* <ApiProvider> */}
+          <Provider store={store}>
             <Toaster richColors theme="dark" position="bottom-center" />
             {children}
-          </ApiProvider>
+            {/* </ApiProvider> */}
+          </Provider>
         </AuthContextProvider>
       </body>
     </html>

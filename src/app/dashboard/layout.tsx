@@ -2,10 +2,7 @@
 import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { useGenericContext } from "@/hooks/useGenericContext";
-import AuthContext from "@/providers/AuthContext";
 import "@/styles/globals.css";
-import { useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -29,9 +26,9 @@ export default function RootLayout({
 
         <Sidebar />
         <div className="flex-1 overflow-auto relative z-10">
-        <Header title={"BE TECH"} />
-        { children }
-      </div>
+          <Header title={"BE TECH"} />
+          {children}
+        </div>
       </div>
     </>
   );

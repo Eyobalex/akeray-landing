@@ -3,25 +3,21 @@
 import SignOut from "@/components/signout";
 import { Button } from "@/components/ui/button";
 import { useGenericContext } from "@/hooks/useGenericContext";
-import { APIContext } from "@/providers/api.provider";
 import AuthContext from "@/providers/AuthContext";
+import { useLazyGetLeasesQuery } from "@/services/api/request/request.query";
 import Link from "next/link";
 import { useEffect } from "react";
 
 const RequestsPage = () => {
   const { user } = useGenericContext(AuthContext);
 
-  const { tenantRequests } = useGenericContext(APIContext);
+  const [getRequests, requests] = useLazyGetLeasesQuery();
 
   useEffect(() => {
-    async function getTenants() {
-      const request = await tenantRequests.get_requests();
-
-      return request;
-    }
-    const response = getTenants();
-    console.log("🚀 ~ useEffect ~ response:", response);
-  }, [tenantRequests]);
+    getRequests({ top: 10, skip: 0 });
+    // const response = getTenants();
+    console.log("🚀 ~ useEffect ~ response:", requests, requests?.data);
+  }, [getRequests]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
