@@ -39,6 +39,7 @@ import React, { useEffect, useState } from "react";
 type AuthContextType = {
   user: User | null;
   authenticated: boolean;
+  accessToken: string | null;
   login: (account: Account) => void;
   logOut: () => void;
 };
@@ -58,6 +59,7 @@ export const AuthContextProvider = ({
   // });
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
 
   useEffect(() => {
     async function init() {
@@ -65,6 +67,7 @@ export const AuthContextProvider = ({
       if (user) {
         await setUser(JSON.parse(user as string));
         await setAuthenticated(true);
+        await setAccessToken(localStorage.getItem("accessToken"));
       }
     }
 
@@ -78,7 +81,7 @@ export const AuthContextProvider = ({
       if (data?.id) {
         await setUser(data);
         await setAuthenticated(true);
-
+        await setAccessToken(localStorage.getItem("accessToken"));
         if (authenticated) {
           router.push("/dashboard");
         }
@@ -104,6 +107,7 @@ export const AuthContextProvider = ({
         logOut: Logout,
         authenticated,
         user,
+        accessToken,
       }}
     >
       {children}
