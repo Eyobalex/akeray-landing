@@ -54,9 +54,7 @@ const Sidebar = () => {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className={`flex items-center p-4 my-4 text-sm font-medium rounded-lg hover:bg-gray-700  ${
-                  location.pathname == item.href ? "bg-gray-700" : ""
-                } transition-color`}
+                className={`flex items-center p-4 my-4 text-sm font-medium rounded-lg hover:bg-gray-700 transition-color`}
               >
                 <item.icon
                   size={20}

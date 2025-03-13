@@ -1,4 +1,5 @@
 "use client";
+import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { useGenericContext } from "@/hooks/useGenericContext";
@@ -27,9 +28,10 @@ export default function RootLayout({
         </div>
 
         <Sidebar />
-        <div className="flex-1 overflow-auto relative z-10 bg-gray-900">
-          {children}
-        </div>
+        <div className="flex-1 overflow-auto relative z-10">
+        <Header title={"BE TECH"} />
+        { children }
+      </div>
       </div>
     </>
   );
