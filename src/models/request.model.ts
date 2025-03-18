@@ -11,6 +11,7 @@ export type TenantRequest = {
   tenant: Tenant;
   unitId: string;
   unit: Unit;
+  enabled: boolean;
   description: string;
   type: string;
   priority: string;
